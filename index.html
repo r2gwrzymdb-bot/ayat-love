@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>For Ayat ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+  font-family: Arial;
+  color: #ff4da6;
+  text-align: center;
+}
+
+/* شاشة البداية */
+#intro {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  animation: fadeOut 3s forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* المحتوى */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: show 2s forwards;
+  animation-delay: 3s;
+}
+
+@keyframes show {
+  to { opacity: 1; }
+}
+
+h1 { font-size: 60px; }
+p { font-size: 22px; max-width: 500px; }
+
+button {
+  padding: 12px 25px;
+  border: none;
+  background: #ff4da6;
+  color: white;
+  font-size: 18px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* قلوب */
+.heart {
+  position: absolute;
+  color: #ff4da6;
+  font-size: 20px;
+  animation: float 2s linear forwards;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- موسيقى -->
+<audio id="music" autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<!-- شاشة البداية -->
+<div id="intro">Ayat ❤️</div>
+
+<!-- المحتوى -->
+<div class="content">
+  <h1>Ayat ❤️</h1>
+  <p id="text">أنا عارف إني غلطت… بس بجد مش عايز أخسرك.</p>
+  <button onclick="love()">اضغطي هنا</button>
+</div>
+
+<script>
+// تشغيل الصوت بعد أول تفاعل (عشان المتصفح)
+document.body.addEventListener("click", () => {
+  document.getElementById("music").play();
+}, { once: true });
+
+// تغيير الرسالة + قلوب
+function love() {
+  document.getElementById("text").innerText =
+  "أنا آسف بجد ، ومش عايز ابدا ازعلك تاني ❤️";
+
+  for (let i = 0; i < 20; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤️";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 2000);
+  }
+}
+</script>
+
+</body>
+</html>
